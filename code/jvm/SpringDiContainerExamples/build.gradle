@@ -1,0 +1,13 @@
+group 'pt.isel.daw'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.7.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
