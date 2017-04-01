@@ -3,10 +3,7 @@ package pt.isel.daw;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -41,7 +38,7 @@ public class ClassExample {
         void send(Object model);
     }
 
-    @Component
+    //@Component
     public static class ExampleNotificationSender implements NotificationSender {
 
         private final ViewEngine viewEngine;
@@ -49,11 +46,13 @@ public class ClassExample {
 
         @Autowired
         public ExampleNotificationSender(ViewEngine viewEngine, EmailSender emailSender){
+
             this.viewEngine = viewEngine;
             this.emailSender = emailSender;
         }
 
         public void send(Object model){
+
             String to = "fetch the recipients from somewhere";
             String subject = "Very important message";
             String body = viewEngine.getView(model);
@@ -67,12 +66,25 @@ public class ClassExample {
 
         @Bean
         public EmailSender createEmailSender(){
+            System.out.println("createEmailSender");
             return new ExampleEmailSender();
         }
 
         @Bean
+        @Scope("prototype")
         public ViewEngine createViewEngine(){
+            System.out.println("createViewEngine");
             return new ExampleViewEngine();
+        }
+
+        @Bean
+        @Scope("prototype")
+        public NotificationSender createNotificationSender(
+                EmailSender emailSender,
+                ViewEngine viewEngine
+        ) {
+            System.out.println("createNotificationSender");
+            return new ExampleNotificationSender(viewEngine, emailSender);
         }
 
     }
@@ -81,6 +93,7 @@ public class ClassExample {
     public void example(){
         ApplicationContext ctx = new AnnotationConfigApplicationContext(TheConfig.class);
         NotificationSender ns = ctx.getBean(NotificationSender.class);
+        ns = ctx.getBean(NotificationSender.class);
         ns.send("the model");
     }
 
