@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 @RestController
 public class ExampleController {
@@ -29,12 +28,16 @@ public class ExampleController {
     public String getHello(
             @PathVariable("name") String name
     ){
-        return formatter.format("Hello "+name);
+        //return formatter.format("Hello "+name);
+        return linkTo(
+                methodOn(ExampleController.class)
+                        .getStudentByNumber(12345, true)).toUri().toString();
     }
 
     @RequestMapping(path="/students/{number}",method= RequestMethod.GET)
     public ResponseEntity<StudentOutputModel> getStudentByNumber(
-            @PathVariable("number") int number
+            @PathVariable("number") int number,
+            @RequestParam(required = false) boolean details
     ){
         Student s = studentService.tryGetStudentByNumber(number);
         if(s == null){
@@ -53,5 +56,11 @@ public class ExampleController {
         return new StudentCollectionOutputModel(
                 new StudentOutputModel("Alice", 123),
                 new StudentOutputModel("Bob", 456));
+    }
+
+    @RequestMapping(path="/transactions",method= RequestMethod.GET)
+    public String transactionExample(){
+        studentService.doSomethingOnTransaction();
+        return "ok";
     }
 }

@@ -3,6 +3,9 @@ package pt.isel.daw;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -24,8 +27,9 @@ public class DemoApplication {
 	}
 
 	@Bean
-    public StudentsService getStudentService(){
-        return new StudentServiceImpl();
+    @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public StudentsService getStudentService(DataSourceTransactionManager tm){
+        return new StudentServiceImpl(tm);
     }
 
     @Bean

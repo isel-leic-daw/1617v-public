@@ -5,4 +5,5 @@ package pt.isel.daw;
  */
 public interface StudentsService {
     Student tryGetStudentByNumber(int number);
+    void doSomethingOnTransaction();
 }
