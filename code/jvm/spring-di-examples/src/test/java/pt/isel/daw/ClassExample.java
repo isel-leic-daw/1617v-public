@@ -38,7 +38,7 @@ public class ClassExample {
         void send(Object model);
     }
 
-    //@Component
+    @Component
     public static class ExampleNotificationSender implements NotificationSender {
 
         private final ViewEngine viewEngine;
@@ -77,7 +77,7 @@ public class ClassExample {
             return new ExampleViewEngine();
         }
 
-        @Bean
+        //@Bean
         @Scope("prototype")
         public NotificationSender createNotificationSender(
                 EmailSender emailSender,

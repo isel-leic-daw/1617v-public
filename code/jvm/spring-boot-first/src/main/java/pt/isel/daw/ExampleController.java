@@ -13,15 +13,13 @@ public class ExampleController {
 
     private final Formatter formatter;
     private final StudentsService studentService;
-    private final HttpMessageConverters messageConverters;
 
     @Autowired
     public ExampleController(Formatter formatter,
-                             StudentsService studentService,
-                             HttpMessageConverters messageConverters){
+                             StudentsService studentService
+                             ){
         this.formatter = formatter;
         this.studentService = studentService;
-        this.messageConverters = messageConverters;
     }
 
     @RequestMapping(path="/hello/{name}",method= RequestMethod.GET)
