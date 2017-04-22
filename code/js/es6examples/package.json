@@ -1,0 +1,24 @@
+{
+  "name": "es6examples",
+  "version": "1.0.0",
+  "description": "ES6 examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^19.0.2",
+    "standard": "^10.0.2"
+  },
+  "standard": {    
+    "globals": [
+      "test",
+      "expect"      
+    ],
+    "ignore": [
+      "dist"
+    ]
+  }
+}
