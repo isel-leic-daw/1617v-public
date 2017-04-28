@@ -4,21 +4,27 @@
   "description": "ES6 examples",
   "main": "index.js",
   "scripts": {
-    "test": "standard && jest"
+    "test": "standard && jest",
+    "tap": "standard && node | tap-spec"    
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "blue-tape": "^1.0.0",
     "jest": "^19.0.2",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "tap-spec": "^4.1.1"
   },
-  "standard": {    
+  "standard": {
     "globals": [
       "test",
-      "expect"      
+      "expect"
     ],
     "ignore": [
       "dist"
     ]
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1"
   }
 }
