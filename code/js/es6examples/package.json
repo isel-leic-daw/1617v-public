@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard && jest",
-    "tap": "standard && node | tap-spec"    
+    "tape": "standard && node"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +25,7 @@
     ]
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "url-search-params": "^0.7.0"
   }
 }
