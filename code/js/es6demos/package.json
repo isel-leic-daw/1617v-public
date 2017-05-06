@@ -11,5 +11,9 @@
   "devDependencies": {
     "standard": "^10.0.2",
     "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "url-search-params": "^0.8.0"
   }
 }
