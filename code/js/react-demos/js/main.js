@@ -1,4 +1,7 @@
 // import SomeText from './SomeText'
+import Counter from './Counter'
+import CounterList from './CounterList'
+
 const SomeText = require('./SomeText').default
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -11,20 +14,6 @@ const model = {
     {name: 'Bob', number: 12346}
   ]
 }
-
-// Component
-const StudentTable = (props) => (
-  React.createElement('table', {},
-    React.createElement('tbody', {},
-      React.createElement('tr', {},
-        React.createElement('th', {}, 'number'),
-        React.createElement('th', {}, 'name')),
-      props.students.map(s => (
-        React.createElement('tr', {},
-          React.createElement('td', {}, s.number),
-          React.createElement('td', {}, s.name)))
-      )))
-)
 
 // JSX
 // Component
@@ -41,10 +30,7 @@ const StudentTable2 = ({students}) => (
 
 const App = (props) => (
   <div>
-    <SomeText before='[' after=']' text='hello' />
-    <StudentTable2 students={props.students} />
-    <StudentTable2 students={props.students} />
-    <StudentTable2 students={props.students} />
+    <CounterList names={model.students.map(s => s.name)} />
   </div>
 )
 
@@ -52,14 +38,3 @@ ReactDOM.render(
   <App students={model.students} />,
   document.getElementById('placeholder')
 )
-
-setInterval(() => {
-  model.students.push({
-    number: 12345,
-    name: 'yas'
-  })
-  ReactDOM.render(
-    <App students={model.students} />,
-    document.getElementById('placeholder')
-  )
-}, 1000)
