@@ -8,6 +8,7 @@ import React from 'react'
 export default class Counter extends React.Component {
   constructor (props) {
     super(props)
+    console.trace()
     console.log('Counter ctor')
     this.state = {counter: props.initialValue}
     this.onChange = this.props.onChange || (_ => {})

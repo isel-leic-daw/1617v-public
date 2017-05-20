@@ -19,7 +19,7 @@ export default class CounterList extends React.Component {
 
   render () {
     console.log('CounterList render')
-    return (
+    const elems = (
       <div>
         <Input />
         <Delayed />
@@ -34,5 +34,7 @@ export default class CounterList extends React.Component {
         Sum: {this.state.counter}
       </div>
     )
+    console.log('CounterList render elems created')
+    return elems
   }
 }

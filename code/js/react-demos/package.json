@@ -21,5 +21,9 @@
     "standard": "^10.0.2",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "parse-link-header": "^1.0.0"
   }
 }
